@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Admin Dashboard</title>
+
+    <!-- Montserrat Font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Material Icons -->
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"
+      rel="stylesheet"
+    />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/styles-admin.css" />
+
+    <style>
+      .add-product{
+        display: flex;
+        align-items: center;
+        padding: auto 10px;
+        padding: 10px;
+        margin: 10px 0px;
+        background-color: #21232D; /* Green */
+        border: none;
+        color: white;
+        text-align: center;
+        text-decoration: none;
+        font-size: 16px;
+        cursor: pointer;
+      }
+    </style>
+
+<style>
+  .button-search {
+    float: right;
+    padding: 6px 10px;
+    /* margin-top: 8px;
+    margin-right: 16px; */
+    background: #ddd;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+  }
+
+  .button-search:hover{
+    background: #ccc;
+  }
+
+  .input-search {
+    padding: 6px;
+    /* margin-top: 8px; */
+    font-size: 14px;
+    border: none;
+  }
+
+  .form-search {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+  }
+</style>
+  </head>
+  <body>
+    <div class="grid-container">
+      <!-- Header -->
+      <!-- <header class="header">
+        <div class="menu-icon" onclick="openSidebar()">
+          <span class="material-icons-outlined">menu</span>
+        </div>
+        <div class="header-left">
+          <span class="material-icons-outlined">search</span>
+        </div>
+        <div class="header-right">
+          <span class="material-icons-outlined">notifications</span>
+          <span class="material-icons-outlined">email</span>
+          <span class="material-icons-outlined">account_circle</span>
+        </div>
+      </header> -->
+      <!-- End Header -->
+
+      <!-- Sidebar -->
+      <aside id="sidebar">
+        <div class="sidebar-title">
+          <div class="sidebar-brand">
+            <span class="material-icons-outlined">inventory</span> Admin
+          </div>
+          <span class="material-icons-outlined" onclick="closeSidebar()"
+            >close</span
+          >
+        </div>
+
+        <ul class="sidebar-list">
+          <li class="sidebar-list-item">
+            <a href="/admin">
+              <span class="material-icons-outlined">bar_chart</span> Số liệu
+              tổng thế
+            </a>
+          </li>
+          <li class="sidebar-list-item">
+            <a href="/users-admin">
+              <span class="material-icons-outlined">group</span> Danh sách người
+              dùng
+            </a>
+          </li>
+          <li class="sidebar-list-item current">
+            <a href="/products-admin">
+              <span class="material-icons-outlined">inventory_2</span> Danh sách
+              sản phẩm
+            </a>
+          </li>
+          <li class="sidebar-list-item">
+            <a href="/orders-admin">
+              <span class="material-icons-outlined">receipt</span> Danh sách đơn
+              hàng
+            </a>
+          </li>
+          <li class="sidebar-list-item logout-hov">
+            <a href="/logout">
+              <span class="material-icons-outlined">logout</span> Đăng xuất
+            </a>
+          </li>
+        </ul>
+      </aside>
+      <!-- End Sidebar -->
+
+      <!-- Main -->
+      <main class="main-container">
+        <div class="main-title">
+          <p class="font-weight-bold">Danh sách sản phẩm</p>
+          <div style="display: flex;">
+            <form class="form-search">
+              <input
+                class="input-search"
+                type="search"
+                placeholder="sku, tên sản phẩm"
+                name="search"
+              />
+              <button class="button-search" type="submit">
+                <span style="color: #21232d" class="material-icons-outlined">
+                  search
+                </span>
+              </button>
+            </form>
+          <a class="add-product" href="/addProduct-admin">Thêm sản phẩm</a>
+          </div>
+        </div>
+
+        <div class="charts-table">
+          <div class="charts-card">
+            <table>
+              <tr>
+                <th>Tên</th>
+                <th>Sku</th>
+                <th>Giá</th>
+                <th>Sửa</th>
+                <th>Xóa</th>
+              </tr>
+              <% for(var i=0; i < product.length; i++) { %>
+              <tr>
+                <td><%= product[i].name %></td>
+                <td><%= product[i].sku %></td>
+                <td class="product-price"><%= product[i].price %> </td>
+                <td>
+                  <a href="/editProduct-admin/<%= product[i].id %>">
+                    <span
+                      style="color: #21232d"
+                      class="material-icons-outlined"
+                    >
+                      edit
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <button style="border: none; background-color: #FFFFFF; cursor: pointer;" onclick="confirmDelete('<%= product[i].id %>')">
+                    <span style="color: #21232d" class="material-icons-outlined">delete</span>
+                  </button>
+                </td>
+              </tr>
+              <% } %>
+            </table>
+          </div>
+        </div>
+      </main>
+      <!-- End Main -->
+    </div>
+
+    <!-- Scripts -->
+    <script>
+      // Lấy tất cả các thẻ có class 'product-price'
+      var priceElements = document.querySelectorAll('.product-price');
+      
+      // Duyệt qua từng thẻ và định dạng lại giá
+      priceElements.forEach(function(priceElement) {
+        var price = parseInt(priceElement.innerText);
+        var formattedPrice = price.toLocaleString('vi-VN') + ' đ';
+        priceElement.innerText = formattedPrice;
+      });
+    </script>
+    <script>
+      async function confirmDelete(productId) {
+        const confirmed = confirm("Bạn có chắc chắn muốn xóa sản phẩm này?");
+        if (confirmed) {
+          try {
+            const response = await fetch(`/api/v1/product/delete-product/${productId}`, {
+              method: 'DELETE',
+            });
+    
+            if (response.ok) {
+              alert('Sản phẩm đã được xóa thành công.');
+              window.location.reload();
+            } else {
+              alert('Xóa sản phẩm thất bại.');
+            }
+          } catch (error) {
+            console.error('Error:', error);
+            alert('Có lỗi xảy ra khi xóa sản phẩm.');
+          }
+        }
+      }
+    </script>
+    <!-- ApexCharts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.35.3/apexcharts.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/scripts.js"></script>
+  </body>
+</html>

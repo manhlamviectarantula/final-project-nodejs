@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Admin Dashboard</title>
+
+    <!-- Montserrat Font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Material Icons -->
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"
+      rel="stylesheet"
+    />
+
+    <style>
+      input[type='text'],
+      input[type='number'] {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-bottom: 10px; /* Khoảng cách giữa các input */
+        font-size: 14px; /* Kích thước chữ */
+      }
+
+      button, .cancel{
+        float: right;
+        background-color: #21232D; /* Green */
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        font-size: 16px;
+        margin: 20px 2px 4px;
+        cursor: pointer;
+      }
+    </style>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/styles-admin.css" />
+  </head>
+  <body>
+    <div class="grid-container">
+      <!-- Header -->
+      <!-- <header class="header">
+        <div class="menu-icon" onclick="openSidebar()">
+          <span class="material-icons-outlined">menu</span>
+        </div>
+        <div class="header-left">
+          <span class="material-icons-outlined">search</span>
+        </div>
+        <div class="header-right">
+          <span class="material-icons-outlined">notifications</span>
+          <span class="material-icons-outlined">email</span>
+          <span class="material-icons-outlined">account_circle</span>
+        </div>
+      </header> -->
+      <!-- End Header -->
+
+      <!-- Sidebar -->
+      <aside id="sidebar">
+        <div class="sidebar-title">
+          <div class="sidebar-brand">
+            <span class="material-icons-outlined">inventory</span> Admin
+          </div>
+          <span class="material-icons-outlined" onclick="closeSidebar()"
+            >close</span
+          >
+        </div>
+
+        <ul class="sidebar-list">
+          <li class="sidebar-list-item">
+            <a href="/admin">
+              <span class="material-icons-outlined">bar_chart</span> Số liệu
+              tổng thế
+            </a>
+          </li>
+          <li class="sidebar-list-item">
+            <a href="/users-admin">
+              <span class="material-icons-outlined">group</span> Danh sách người
+              dùng
+            </a>
+          </li>
+          <li class="sidebar-list-item">
+            <a href="/products-admin">
+              <span class="material-icons-outlined">inventory_2</span> Danh sách
+              sản phẩm
+            </a>
+          </li>
+          <li class="sidebar-list-item current">
+            <a href="/orders-admin">
+              <span class="material-icons-outlined">receipt</span> Danh sách đơn
+              hàng
+            </a>
+          </li>
+          <li class="sidebar-list-item logout-hov">
+            <a href="/logout">
+              <span class="material-icons-outlined">logout</span> Đăng xuất
+            </a>
+          </li>
+        </ul>
+      </aside>
+      <!-- End Sidebar -->
+
+      <!-- Main -->
+      <main class="main-container">
+        <div class="main-title">
+          <p class="font-weight-bold">Thông tin đơn hàng</p>
+        </div>
+
+        <div class="charts-table">
+          <div class="charts-card">
+            <form action="/api/v4/order/update-order" method="post">
+              <table>
+                <tr>
+                  <th>ID</th>
+                  <td><%= order._id %></td>
+                  <input type="hidden" name="orderID" value="<%= order._id %>">
+                </tr>
+
+                <tr>
+                  <th>Người đặt</th>
+                  <td><%= emailU.email %></td>
+                </tr>
+
+                <tr>
+                  <th>Tổng đơn</th>
+                  <td class="product-amount"><%= order.amount %></td>
+                </tr>
+
+                <tr>
+                  <th>Địa chỉ</th>
+                  <td><input type="text" name="address" value="<%= order.address %>" /></td>
+                </tr>
+
+                <tr>
+                  <th>Trạng thái</th>
+                  <td><input type="text" name="status" value="<%= order.status %>" /></td>
+                </tr>
+
+                <tr>
+                  <th>Ngày đặt hàng</th>
+                  <td><%= order.created_at %></td>
+                </tr>
+              </table>
+              <% if (mes === 1) { %>
+                <p style="color: #4CAF50;">Cập nhật thành công</p>
+                <% } else if (mes === 0) { %>
+                <p></p>
+                <% } %>
+              <a class="cancel" style="background-color: #e7e7e7;text-decoration: none; color: #333;" href="/orders-admin">Hủy</a>
+              <button type="submit">Lưu</button>
+            </form>
+          </div>
+        </div>
+      </main>
+      <!-- End Main -->
+    </div>
+
+    <!-- Scripts -->
+    <script>
+      // Lấy tất cả các thẻ có class 'product-price'
+      var priceElements = document.querySelectorAll('.product-amount');
+      
+      // Duyệt qua từng thẻ và định dạng lại giá
+      priceElements.forEach(function(priceElement) {
+        var price = parseInt(priceElement.innerText);
+        var formattedPrice = price.toLocaleString('vi-VN') + ' đ';
+        priceElement.innerText = formattedPrice;
+      });
+    </script>
+    <!-- ApexCharts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.35.3/apexcharts.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/scripts.js"></script>
+  </body>
+</html>

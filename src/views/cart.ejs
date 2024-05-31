@@ -1,0 +1,214 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>home</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+
+    <link rel="stylesheet" href="./css/style.css" />
+
+    <script src="./js/script.js" defer></script>
+  </head>
+
+  <body>
+    <header class="header">
+      <a href="/" class="logo"><i class="fa-solid fa-eye"></i></a>
+
+      <nav class="navbar">
+        <ul>
+          <li><a href="/">Trang chủ</a></li>
+          <li><a href="/products">Sản phẩm</a></li>
+          <% if(user) { %>
+          <li>
+            <a class="logout-hov" href="/logout">Đăng xuất</a>
+          </li>
+          <% }else { %>
+          <li>
+            <a>Tài khoản</a>
+            <ul>
+              <li><a href="/login">Đăng nhập</a></li>
+              <li><a href="/register">Đăng ký</a></li>
+            </ul>
+          </li>
+          <% } %>
+        </ul>
+      </nav>
+
+      <div class="icons">
+        <div id="menu-btn" class="fas fa-bars"></div>
+        <a href="/cart" class="fa-solid fa-cart-shopping"></a>
+      </div>
+
+      <form action="" class="search-form">
+        <input
+          type="search"
+          name=""
+          placeholder="tìm kiếm..."
+          id="search-box"
+        />
+        <label for="search-box"
+          ><i class="fa-solid fa-magnifying-glass"></i
+        ></label>
+      </form>
+    </header>
+
+    <section class="shopping-cart">
+      <h1 class="title">Giỏ hàng</h1>
+
+      <div class="box-container">
+        <% products.forEach(product => { %>
+        <div class="box">
+          <a href="/delete-cart/<%= product.productId %>">
+            <i class="fas fa-times"></i>
+          </a>
+          <img src="/uploads/<%= product.productThumnail %>" alt="" />
+          <div class="content">
+            <h3><%= product.productName %></h3>
+            <form action="">
+              <span>Số lượng:</span>
+              <input
+                type="number"
+                name="quantity"
+                value="<%= product.quantity %>"
+                class="quantity"
+                min="1"
+                data-product-id="<%= product.productId %>"
+              />
+            </form>
+            <input
+              type="hidden"
+              value="<%= product.productPrice %>"
+              class="price"
+            />
+            <div class="total-price"></div>
+          </div>
+        </div>
+        <% }); %>
+      </div>
+
+      <h1 class="title">Hóa đơn</h1>
+
+      <form action="/api/v4/order/add-order" method="post">
+        <div class="cart-total">
+          <h3 class="totalBill" id="total-all-product"></h3>
+          <h3 id="pre-total-bill">
+            Tạm tính: <span name="pre-total-bill"></span> <span>đ</span>
+          </h3>
+          <h3>Phương thức thanh toán: <span>Tiền mặt</span></h3>
+          <h3>Mã giảm giá: <span>Không có</span></h3>
+          <h3 id="total-bill">
+            Tổng đơn hàng: <span name="total-bill"></span> <span>đ</span>
+            <input type="hidden" name="total-bill-send" value="" />
+            <input type="hidden" name="cart-data" id="cart-data" value="" />
+          </h3>
+          <button type="submit" class="btn">Thanh toán</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="footer">
+      <div class="box-container">
+        <div class="box">
+          <h3>Truy cập nhanh</h3>
+          <a href="home.html"> <i class="fas fa-angle-right"></i>Trang chủ</a>
+          <a href="products.html">
+            <i class="fas fa-angle-right"></i>Sản phẩm</a
+          >
+          <a href="about.html">
+            <i class="fas fa-angle-right"></i>Về chúng tôi</a
+          >
+          <a href="contact.html"> <i class="fas fa-angle-right"></i>Liên hệ</a>
+          <a href="login.html"> <i class="fas fa-angle-right"></i>Đăng nhập</a>
+          <a href="register.html"> <i class="fas fa-angle-right"></i>Đăng ký</a>
+          <a href="cart.html"> <i class="fas fa-angle-right"></i>Giỏ hàng</a>
+        </div>
+
+        <div class="box">
+          <h3>Chính sách</h3>
+          <a href="#"> <i class="fas fa-angle-right"></i>Điều khoản dịch vụ</a>
+          <a href="#"> <i class="fas fa-angle-right"></i>Thanh toán</a>
+          <a href="#"> <i class="fas fa-angle-right"></i>Giao hàng</a>
+          <a href="#"> <i class="fas fa-angle-right"></i>Đổi trả</a>
+          <a href="#"> <i class="fas fa-angle-right"></i>Tuyển dụng</a>
+        </div>
+
+        <div class="box">
+          <h3>Nền tảng khác</h3>
+          <a href="#"> <i class="fab fa-facebook-f"></i> facebook </a>
+          <a href="#"> <i class="fab fa-twitter"></i> twitter </a>
+          <a href="#"> <i class="fab fa-instagram"></i> instagram </a>
+        </div>
+
+        <div class="box">
+          <h3>Nhập mã giới thiệu</h3>
+          <p>
+            Nhập mã giới thiệu nhận được từ người thân, bạn bè,... để nhận ưu
+            đãi
+          </p>
+          <form action="">
+            <input type="text" placeholder="mã giới thiệu" />
+            <input type="submit" value="xác nhận" class="btn" />
+          </form>
+        </div>
+      </div>
+
+      <div class="credit">
+        Trụ sở chính: <span>VTC ACADEMY</span> TPHCM 4/2024
+      </div>
+    </section>
+  </body>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const quantities = document.querySelectorAll('.quantity');
+      const prices = document.querySelectorAll('.price');
+      const totalBillElement = document.getElementById('total-bill');
+      const preTotalBillElement = document.getElementById('pre-total-bill');
+      const cartDataElement = document.getElementById('cart-data');
+
+      function formatPrice(price) {
+        return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+      }
+
+      function updateTotalBill() {
+        let totalBill = 0;
+        const cartData = [];
+        for (let i = 0; i < quantities.length; i++) {
+          const quantity = parseInt(quantities[i].value);
+          const price = parseFloat(prices[i].value);
+          const totalPrice = quantity * price;
+          totalBill += totalPrice;
+
+          const productId = quantities[i].getAttribute('data-product-id');
+          cartData.push({ productId, quantity });
+
+          const totalPriceElement = quantities[i]
+            .closest('.box')
+            .querySelector('.total-price');
+          totalPriceElement.textContent = formatPrice(totalPrice);
+        }
+
+        document.querySelector('input[name="total-bill-send"]').value =
+          totalBill;
+        cartDataElement.value = JSON.stringify(cartData);
+
+        totalBillElement.querySelector('span').textContent =
+          formatPrice(totalBill);
+
+        preTotalBillElement.querySelector('span').textContent =
+          formatPrice(totalBill);
+      }
+
+      updateTotalBill();
+
+      quantities.forEach(function (quantityInput) {
+        quantityInput.addEventListener('change', updateTotalBill);
+        quantityInput.addEventListener('input', updateTotalBill);
+      });
+    });
+  </script>
+</html>

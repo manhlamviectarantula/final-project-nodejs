@@ -1,0 +1,232 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>home</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <link rel="stylesheet" href="./css/style.css">
+
+    <script src="./js/script.js" defer></script>
+</head>
+
+<body>
+    <header class="header">
+        <a href="home.html" class="logo"><i class="fa-solid fa-eye"></i></a>
+
+        <nav class="navbar">
+            <ul>
+                <li><a href="#Home">HOT</a></li>
+                <li><a href="#About">Về chúng tôi</a></li>
+                <li><a href="#Contact">Liên hệ</a></li>
+                <li><a href="products.html">Sản phẩm</a></li>
+                <li><a>Tài khoản</a>
+                    <ul>
+                        <li><a href="login.html">Đăng nhập</a></li>
+                        <li><a href="register.html">Đăng ký</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="icons">
+            <div id="menu-btn" class="fas fa-bars"></div>
+            <!-- <div id="search-btn"><i class="fa-solid fa-magnifying-glass"></i></div>
+            <a href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a> -->
+            
+            <div id="search-btn" class="fa-solid fa-magnifying-glass"></div>
+            <a href="cart.html" class="fa-solid fa-cart-shopping"></a>
+        </div>
+
+        <form action="" class="search-form">
+            <input type="search" name="" placeholder="tìm kiếm..." id="search-box">
+            <label for="search-box"><i class="fa-solid fa-magnifying-glass"></i></label>
+        </form>
+    </header>
+
+    <section id="Home" class="home">
+
+        <h1 style="padding-top: 1rem; margin-bottom: 1rem;" class="title">HOT</h1>
+
+
+        <div class="slide active" style="background: url(images/home-bg-1.png) no-repeat;">
+            <div class="content">
+                <span>Giảm giá</span>
+                <h3>Lên đến 50%</h3>
+                <a href="#" class="btn">Xem ngay</a>
+            </div>
+        </div>
+    
+        <div class="slide" style="background: url(images/home-bg-2.jpg) no-repeat;">
+            <div class="content">
+                <span>Giảm giá</span>
+                <h3>Lên đến 50%</h3>
+                <a href="#" class="btn">Xem ngay</a>
+            </div>
+        </div>
+    
+        <div class="slide" style="background: url(images/home-bg-3.jpg) no-repeat;">
+            <div class="content">
+                <span>Giảm giá</span>
+                <h3>Lên đến 50%</h3>
+                <a href="#" class="btn">Xem ngay</a>
+            </div>
+        </div>
+    
+        <div id="next-slide" onclick="next()" class="fas fa-angle-right"></div>
+        <div id="prev-slide" onclick="prev()" class="fas fa-angle-left"></div>
+    
+    </section>
+
+    <section class="banner">
+
+        <div class="box">
+            <img src="images/home-bg-1.png" alt="">
+            <div class="content">
+                <span>Giảm giá</span>
+                <h3>Lên đến 50%</h3>
+                <a href="#" class="btn">Xem ngay</a>
+            </div>
+        </div>
+    
+        <div class="box">
+            <img src="images/home-bg-2.jpg" alt="">
+            <div class="content">
+                <span>Quà trặng kèm</span>
+                <h3>Khăn lau, voucher,...</h3>
+                <a href="#" class="btn">Xem ngay</a>
+            </div>
+        </div>
+    
+        <div class="box">
+            <img src="images/home-bg-3.jpg" alt="">
+            <div class="content">
+                <span>Miễn phí</span>
+                <h3>vận chuyển, đo độ cận</h3>
+                <a href="#" class="btn">Xem ngay</a>
+            </div>
+        </div>
+    
+    </section>
+
+    <section class="about"  id="About">
+
+        <h1 class="title">Về chúng tôi</h1>
+    
+        <div class="row">
+    
+            <div class="image">
+                <img src="images/about-img.jpg" alt="">
+            </div>
+    
+            <div class="content">
+                <h3>Hơn 30 cửa hàng trên cả nước</h3>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. In assumenda ut nisi suscipit voluptatum, hic perspiciatis fugit quae quasi quod laudantium doloremque repellat, incidunt minus architecto dolore vero, molestiae quaerat?</p>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Veritatis perferendis necessitatibus exercitationem quam tempore recusandae iure qui, nobis ut aliquam.</p>
+                <a href="#" class="btn">Xem thêm</a>
+            </div>
+            
+        </div>
+    
+        <div class="icons-container">
+    
+            <div class="icons">
+                <img src="images/icon-1.png" alt="">
+                <h3>Đa dạng mẫu</h3>
+            </div>
+    
+            <div class="icons">
+                <img src="images/icon-2.png" alt="">
+                <h3>Miễn phí vận chuyển</h3>
+            </div>
+    
+            <div class="icons">
+                <img src="images/icon-3.png" alt="">
+                <h3>Dễ dàng đổi trả</h3>
+            </div>
+    
+            <div class="icons">
+                <img src="images/icon-4.png" alt="">
+                <h3>Đa dạng thanh toán</h3>
+            </div>
+    
+            <div class="icons">
+                <img src="images/icon-5.png" alt="">
+                <h3>Hỗ trợ 24/7</h3>
+            </div>
+    
+        </div>
+    
+    </section>
+
+    
+
+    <section class="contact" id="Contact">
+
+        <h1 class="title">Liên hệ</h1>
+    
+        <div class="row">
+    
+            <form action="">
+                <input type="text" placeholder="Họ tên" class="box">
+                <input type="number" placeholder="Số điện thoại" class="box">
+                <input type="email" placeholder="Email" class="box">
+                <textarea name="" placeholder="Vấn đề cần liên hệ" id="" cols="30" rows="10"></textarea>
+                <input type="submit" value="Gửi" class="btn">
+            </form>
+
+            <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.610784609875!2d106.65339277405316!3d10.76444998938358!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752959abdde3dd%3A0xa1ae728c26f860be!2sVTC%20Academy%20Plus!5e0!3m2!1svi!2s!4v1712028081404!5m2!1svi!2s" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+    
+    </section>
+
+    <section class="footer">
+
+        <div class="box-container">
+    
+            <div class="box">
+                <h3>Truy cập nhanh</h3>
+                <a href="home.html"> <i class="fas fa-angle-right"></i>Trang chủ</a>
+                <a href="products.html"> <i class="fas fa-angle-right"></i>Sản phẩm</a>
+                <a href="about.html"> <i class="fas fa-angle-right"></i>Về chúng tôi</a>
+                <a href="contact.html"> <i class="fas fa-angle-right"></i>Liên hệ</a>
+                <a href="login.html"> <i class="fas fa-angle-right"></i>Đăng nhập</a>
+                <a href="register.html"> <i class="fas fa-angle-right"></i>Đăng ký</a>
+                <a href="cart.html"> <i class="fas fa-angle-right"></i>Giỏ hàng</a>
+            </div>
+    
+            <div class="box">
+                <h3>Chính sách</h3>
+                <a href="#"> <i class="fas fa-angle-right"></i>Điều khoản dịch vụ</a>
+                <a href="#"> <i class="fas fa-angle-right"></i>Thanh toán</a>
+                <a href="#"> <i class="fas fa-angle-right"></i>Giao hàng</a>
+                <a href="#"> <i class="fas fa-angle-right"></i>Đổi trả</a>
+                <a href="#"> <i class="fas fa-angle-right"></i>Tuyển dụng</a>
+            </div>
+    
+            <div class="box">
+                <h3>Nền tảng khác</h3>
+                <a href="#"> <i class="fab fa-facebook-f"></i> facebook </a>
+                <a href="#"> <i class="fab fa-twitter"></i> twitter </a>
+                <a href="#"> <i class="fab fa-instagram"></i> instagram </a>
+            </div>
+    
+            <div class="box">
+                <h3>Nhập mã giới thiệu</h3>
+                <p>Nhập mã giới thiệu nhận được từ người thân, bạn bè,... để nhận ưu đãi</p>
+                <form action="">
+                    <input type="text" placeholder="mã giới thiệu">
+                    <input type="submit" value="xác nhận" class="btn">
+                </form>
+            </div>
+    
+        </div>
+    
+        <div class="credit">Trụ sở chính: <span>VTC ACADEMY</span> TPHCM 4/2024</div>
+    
+    </section>
+</body>
+
+</html>

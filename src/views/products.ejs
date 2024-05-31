@@ -1,0 +1,164 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>home</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <link rel="stylesheet" href="./css/style.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <script src="./js/script.js" defer></script>
+    <style>
+        .paginationjs {
+            margin-top: 2rem;
+            display: flex;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #paging ul {
+            list-style: none;
+            display: flex;
+        }
+
+        #paging ul li {
+            margin: 0 0.5rem;
+        }
+
+        #paging .paginationjs-ellipsis {
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            /* border: .3rem solid black; */
+            background-color: #e4e4e4;
+            border-radius: .5rem;
+            text-align: center;
+            font-size: 3.5rem;
+        }
+
+        #paging .paginationjs-page,
+        /* #paging .paginationjs-ellipsis, */
+        #paging .paginationjs-prev,
+        #paging .paginationjs-next {
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            border: .3rem solid black;
+            border-radius: .5rem;
+            text-align: center;
+            font-size: 3rem;
+        }
+
+        #paging .active {
+            background-color: black;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="header">
+        <a href="/" class="logo"><i class="fa-solid fa-eye"></i></a>
+
+        <nav class="navbar">
+            <ul>
+                <li><a href="/">Trang chủ</a></li>
+                <li><a href="/products">Sản phẩm</a></li>
+                <% if(user) { %>
+                    <li>
+                        <a class="logout-hov" href="/logout">Đăng xuất</a>
+                    </li>
+                  <% }else { %>
+                  <li>
+                    <a>Tài khoản</a>
+                    <ul>
+                      <li><a href="/login">Đăng nhập</a></li>
+                      <li><a href="/register">Đăng ký</a></li>
+                    </ul>
+                  </li>
+                  <% } %>
+            </ul>
+        </nav>
+
+        <div class="icons">
+            <div id="menu-btn" class="fas fa-bars"></div>
+            <div id="search-btn" class="fa-solid fa-magnifying-glass"></div>
+            <a href="/cart" class="fa-solid fa-cart-shopping"></a>
+        </div>
+
+        <!-- <form class="search-form" action="/api/v1/products/list-product/search"> -->
+        <form class="search-form" id="searchForm">
+            <input type="search"  id="search" name="search" placeholder="tìm kiếm...">
+            <button id="searchButton" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </form>
+    </header>
+
+    <section class="products">
+
+        <h1 class="title"> Tất cả sản phẩm </h1>
+
+
+        <div id="content" class="box-container">
+
+        </div>
+
+        <div id="paging"></div>
+
+    </section>
+
+    <section class="footer">
+
+        <div class="box-container">
+
+            <div class="box">
+                <h3>Truy cập nhanh</h3>
+                <a href="home.html"> <i class="fas fa-angle-right"></i>Trang chủ</a>
+                <a href="products.html"> <i class="fas fa-angle-right"></i>Sản phẩm</a>
+                <a href="about.html"> <i class="fas fa-angle-right"></i>Về chúng tôi</a>
+                <a href="contact.html"> <i class="fas fa-angle-right"></i>Liên hệ</a>
+                <a href="login.html"> <i class="fas fa-angle-right"></i>Đăng nhập</a>
+                <a href="register.html"> <i class="fas fa-angle-right"></i>Đăng ký</a>
+                <a href="cart.html"> <i class="fas fa-angle-right"></i>Giỏ hàng</a>
+            </div>
+
+            <div class="box">
+                <h3>Chính sách</h3>
+                <a href="#"> <i class="fas fa-angle-right"></i>Điều khoản dịch vụ</a>
+                <a href="#"> <i class="fas fa-angle-right"></i>Thanh toán</a>
+                <a href="#"> <i class="fas fa-angle-right"></i>Giao hàng</a>
+                <a href="#"> <i class="fas fa-angle-right"></i>Đổi trả</a>
+                <a href="#"> <i class="fas fa-angle-right"></i>Tuyển dụng</a>
+            </div>
+
+            <div class="box">
+                <h3>Nền tảng khác</h3>
+                <a href="#"> <i class="fab fa-facebook-f"></i> facebook </a>
+                <a href="#"> <i class="fab fa-twitter"></i> twitter </a>
+                <a href="#"> <i class="fab fa-instagram"></i> instagram </a>
+            </div>
+
+            <div class="box">
+                <h3>Nhập mã giới thiệu</h3>
+                <p>Nhập mã giới thiệu nhận được từ người thân, bạn bè,... để nhận ưu đãi</p>
+                <form action="">
+                    <input type="text" placeholder="mã giới thiệu">
+                    <input type="submit" value="xác nhận" class="btn">
+                </form>
+            </div>
+
+        </div>
+
+        <div class="credit">Trụ sở chính: <span>VTC ACADEMY</span> TPHCM 4/2024</div>
+
+    </section>
+</body>
+<script src="./js/pagination.js"></script>
+<script src="./js/pagination1.js"></script>
+
+</html>
